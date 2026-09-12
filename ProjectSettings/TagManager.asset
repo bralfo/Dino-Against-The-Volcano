@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Ground
+  - Camera
+  - Enemy
   - 
   - 
   - 
@@ -41,3 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2081279729
+    locked: 0
+  - name: Backgorund details
+    uniqueID: 72867715
+    locked: 0
+  - name: Platforms
+    uniqueID: 344765723
+    locked: 0
+  - name: Enemys
+    uniqueID: 2254251037
+    locked: 0
+  - name: Player
+    uniqueID: 2686605585
+    locked: 0
+  - name: Walls
+    uniqueID: 1886333107
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  m_MigratedRenderPipelines: []
