@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
+    [SerializeField, Min(1)] private int maxJumps = 2; 
 
+    private int jumpsUsed;
     private bool isJumping;
 
     [Header("Ground Check")]
@@ -28,12 +30,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsGrounded() && rb.linearVelocity.y <= 0f)
+            jumpsUsed = 0;
+        
         Move();
         HandleFlip();
         AnimTransition();
-
-
-
     }
 
     private void AnimTransition()
@@ -55,20 +57,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (value.isPressed && IsGrounded())
+        if (value.isPressed)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            isJumping = true;
+            if (IsGrounded() && rb.linearVelocity.y <= 0f)
+                jumpsUsed = 0;
+        
+            if (jumpsUsed < maxJumps)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                jumpsUsed++;
+                isJumping = true;
+            }
+            return;
         }
 
-        if (!value.isPressed && isJumping)
+        if (isJumping)
         {
             isJumping = false;
 
-            if (rb.linearVelocity.y > 0)
-            {
+            if (rb.linearVelocity.y > 0f)
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
-            }
         }
     }
 
