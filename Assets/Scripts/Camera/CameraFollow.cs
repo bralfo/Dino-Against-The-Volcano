@@ -2,19 +2,58 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] public Transform player;
-    [SerializeField] float minX, maxX; 
-    void Awake()
+    [SerializeField] private Transform player;
+    [SerializeField] private float minX;
+    [SerializeField] private float maxX;
+
+    private PlayerHealth playerHealth;
+
+    private void Awake()
     {
-        player = GameObject.FindWithTag("Player").transform; 
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindWithTag("Player");
+
+            if (playerObject != null)
+                player = playerObject.transform;
+        }
+
+        if (player != null)
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+                playerHealth.Respawned += SnapToPlayer;
+        }
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void OnDestroy()
     {
-        if (player.position.x >= transform.position.x)
-            transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+        if (playerHealth != null)
+            playerHealth.Respawned -= SnapToPlayer;
+    }
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), 0, transform.position.z);
+    private void LateUpdate()
+    {
+        if (player == null)
+            return;
+
+        if (player.position.x <= transform.position.x)
+            return;
+
+        SetCameraX(player.position.x);
+    }
+
+    private void SnapToPlayer()
+    {
+        if (player != null)
+            SetCameraX(player.position.x);
+    }
+
+    private void SetCameraX(float positionX)
+    {
+        float targetX = Mathf.Clamp(positionX, minX, maxX);
+
+        transform.position = new Vector3(targetX, 0f, transform.position.z);
     }
 }
