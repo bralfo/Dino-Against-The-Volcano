@@ -4,12 +4,19 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f;
 
+    [Header("Player interaction")]
+    [SerializeField] private float stompBounceForce = 15f;
+    [SerializeField, Min(0f)] private float stompTolerance = 0.2f;
+
     private bool isFacingRight = false;
     private Rigidbody2D rb;
+    private Collider2D enemyCollider;
+    private bool isDead;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemyCollider = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate()
@@ -39,6 +46,44 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyWall"))
         {
             Flip();
+            return;
         }
+
+        PlayerHealth playerHealth = collision.collider.GetComponentInParent<PlayerHealth>();
+
+        if (playerHealth == null || isDead)
+            return;
+
+        Rigidbody2D playerBody = playerHealth.GetComponent<Rigidbody2D>();
+
+        if (WasStomped(collision.collider, playerBody))
+        {
+            isDead = true;
+
+            if (playerBody != null)
+            {
+                playerBody.linearVelocity = new Vector2(
+                    playerBody.linearVelocity.x,
+                    stompBounceForce
+                );
+            }
+
+            Destroy(gameObject);
+            return;
+        }
+
+        playerHealth.TakeDamage(1);
+    }
+
+    private bool WasStomped(Collider2D playerCollider, Rigidbody2D playerBody)
+    {
+        if (enemyCollider == null || playerBody == null)
+            return false;
+
+        bool playerIsFalling = playerBody.linearVelocity.y <= 0f;
+        bool playerIsAbove = playerCollider.bounds.min.y >=
+                             enemyCollider.bounds.max.y - stompTolerance;
+
+        return playerIsFalling && playerIsAbove;
     }
 }
