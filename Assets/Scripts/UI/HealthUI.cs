@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HealthUI : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
-    [SerializeField] private Image[] hearts;
+    [SerializeField] private Graphic[] hearts;
 
     private void OnEnable()
     {

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
+    [SerializeField, Range(0.1f, 1f)] private float doubleJumpForceMultiplier = 0.7f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
     [SerializeField, Min(1)] private int maxJumps = 2; 
 
@@ -64,7 +65,11 @@ public class PlayerController : MonoBehaviour
         
             if (jumpsUsed < maxJumps)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                float currentJumpForce = jumpsUsed == 0
+                    ? jumpForce
+                    : jumpForce * doubleJumpForceMultiplier;
+
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, currentJumpForce);
                 jumpsUsed++;
                 isJumping = true;
             }

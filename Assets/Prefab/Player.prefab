@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 10
   jumpForce: 20
+  doubleJumpForceMultiplier: 0.7
   jumpCutMultiplier: 0.5
   maxJumps: 2
   groundCheck: {fileID: 4415957862907055698}
@@ -72,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d35e5f4a161b5046b7ed1074e15f93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  maxHealth: 100
+  maxHealth: 3
   respawnPoint: {fileID: 0}
   fallLimitY: -10
   damageCooldown: 0.5

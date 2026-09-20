@@ -7,31 +7,37 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
 
-    private bool isGameOver;
+    public bool IsGameOver { get; private set; }
 
     private void Awake()
     {
         Time.timeScale = 1f;
-        gameOverPanel.SetActive(false);
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
     }
 
     private void OnEnable()
     {
-        playerHealth.Died += ShowGameOver;
+        if (playerHealth != null)
+            playerHealth.Died += ShowGameOver;
     }
 
     private void OnDisable()
     {
-        playerHealth.Died -= ShowGameOver;
+        if (playerHealth != null)
+            playerHealth.Died -= ShowGameOver;
     }
 
     private void ShowGameOver()
     {
-        if (isGameOver)
+        if (IsGameOver)
             return;
 
-        isGameOver = true;
-        gameOverPanel.SetActive(true);
+        IsGameOver = true;
+
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+
         Time.timeScale = 0f;
     }
 
