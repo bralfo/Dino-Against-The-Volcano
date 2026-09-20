@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: fffdfb9744ead45229994581007161b1
+guid: 2b196e69ae9e59a7faef9fbeb3785e79
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3685002520340290964
-    second: L_0
+      213: 4426880992691471380
+    second: GameOver1_0
   - first:
-      213: -8919157108352851482
-    second: L_1
+      213: 4773959086655440505
+    second: GameOver1_1
   - first:
-      213: 244419432235763535
-    second: L_2
+      213: -3013212860317286915
+    second: GameOver1_2
   - first:
-      213: 2930803993169843606
-    second: L_3
+      213: 2649479496535813687
+    second: GameOver1_3
   - first:
-      213: 4470235749624450680
-    second: L_4
+      213: -7015039676483683474
+    second: GameOver1_4
   - first:
-      213: -6602743187183195132
-    second: L_5
+      213: -6394841708847187396
+    second: GameOver1_5
   - first:
-      213: 7082873460904208324
-    second: L_6
+      213: 4046578844211826861
+    second: GameOver1_6
   - first:
-      213: 5547203479059277656
-    second: L_7
+      213: -170169477683331619
+    second: GameOver1_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: L_0
+      name: GameOver1_0
       rect:
         serializedVersion: 2
         x: 363
@@ -136,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49d5d4da442c32330800000000000000
-      internalID: 3685002520340290964
+      spriteID: 414cd48eec07f6d30800000000000000
+      internalID: 4426880992691471380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_1
+      name: GameOver1_1
       rect:
         serializedVersion: 2
         x: 717
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e16abc9dd9c83480800000000000000
-      internalID: -8919157108352851482
+      spriteID: 976885cee72804240800000000000000
+      internalID: 4773959086655440505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_2
+      name: GameOver1_2
       rect:
         serializedVersion: 2
         x: 1115
@@ -180,14 +180,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f478d9abd2a546300800000000000000
-      internalID: 244419432235763535
+      spriteID: dfd36244edaee26d0800000000000000
+      internalID: -3013212860317286915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_3
+      name: GameOver1_3
       rect:
         serializedVersion: 2
         x: 1608
@@ -202,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6955f2724be4ca820800000000000000
-      internalID: 2930803993169843606
+      spriteID: 73ea2b68097d4c420800000000000000
+      internalID: 2649479496535813687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_4
+      name: GameOver1_4
       rect:
         serializedVersion: 2
         x: 363
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 87e0e9edab7790e30800000000000000
-      internalID: 4470235749624450680
+      spriteID: e6b3bedd49295ae90800000000000000
+      internalID: -7015039676483683474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_5
+      name: GameOver1_5
       rect:
         serializedVersion: 2
         x: 748
@@ -246,14 +246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40ca0d8dd085e54a0800000000000000
-      internalID: -6602743187183195132
+      spriteID: c3abf4dd855f047a0800000000000000
+      internalID: -6394841708847187396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_6
+      name: GameOver1_6
       rect:
         serializedVersion: 2
         x: 1131
@@ -268,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c7ac32d2eb6b4260800000000000000
-      internalID: 7082873460904208324
+      spriteID: da05bd4e406582830800000000000000
+      internalID: 4046578844211826861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_7
+      name: GameOver1_7
       rect:
         serializedVersion: 2
         x: 1407
@@ -290,8 +290,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 857a3228c20abfc40800000000000000
-      internalID: 5547203479059277656
+      spriteID: ddd321bf2cf63adf0800000000000000
+      internalID: -170169477683331619
       vertices: []
       indices: 
       edges: []
@@ -310,14 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      L_0: 3685002520340290964
-      L_1: -8919157108352851482
-      L_2: 244419432235763535
-      L_3: 2930803993169843606
-      L_4: 4470235749624450680
-      L_5: -6602743187183195132
-      L_6: 7082873460904208324
-      L_7: 5547203479059277656
+      GameOver1_0: 4426880992691471380
+      GameOver1_1: 4773959086655440505
+      GameOver1_2: -3013212860317286915
+      GameOver1_3: 2649479496535813687
+      GameOver1_4: -7015039676483683474
+      GameOver1_5: -6394841708847187396
+      GameOver1_6: 4046578844211826861
+      GameOver1_7: -170169477683331619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

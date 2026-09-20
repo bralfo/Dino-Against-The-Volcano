@@ -171,4 +171,15 @@ public class PlayerHealth : MonoBehaviour
 
         Respawned?.Invoke();
     }
+
+    public void RestoreHealth(int health)
+    {
+        CurrentHealth = Mathf.Clamp(health, 1, maxHealth);
+        NotifyHealthChanged();
+    }
+
+    public void SetRespawnPoint(Transform point)
+    {
+        respawnPoint = point;
+    }
 }

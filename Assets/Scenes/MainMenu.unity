@@ -185,8 +185,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290971694
-  m_fontColor: {r: 0.17906792, g: 0.032440357, b: 0.764151, a: 1}
+    rgba: 4293489099
+  m_fontColor: {r: 0.7970911, g: 0.44459772, b: 0.9150943, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -531,7 +531,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -553,7 +553,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1093219880}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1622200473}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: ContinueGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1093219880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c8e6c38b6ab6c7b9b729d7a458976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
+  continueButton: {fileID: 1093219879}
 --- !u!1 &1723771907
 GameObject:
   m_ObjectHideFlags: 0
