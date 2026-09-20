@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 10
-  jumpForce: 30
+  jumpForce: 22
   jumpCutMultiplier: 0.5
   maxJumps: 2
   groundCheck: {fileID: 65105745}

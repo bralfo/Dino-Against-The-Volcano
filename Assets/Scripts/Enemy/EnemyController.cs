@@ -12,11 +12,38 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D enemyCollider;
     private bool isDead;
+    private PlayerHealth playerHealth;
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private bool initialFacingRight;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyCollider = GetComponent<Collider2D>();
+
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+        initialFacingRight = isFacingRight;
+    }
+
+    private void Start()
+    {
+        GameObject playerObject = GameObject.FindWithTag("Player");
+
+        if (playerObject == null)
+            return;
+
+        playerHealth = playerObject.GetComponent<PlayerHealth>();
+
+        if (playerHealth != null)
+            playerHealth.LifeLost += RespawnEnemy;
+    }
+
+    private void OnDestroy()
+    {
+        if (playerHealth != null)
+            playerHealth.LifeLost -= RespawnEnemy;
     }
 
     private void FixedUpdate()
@@ -68,7 +95,7 @@ public class EnemyController : MonoBehaviour
                 );
             }
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 
@@ -85,5 +112,21 @@ public class EnemyController : MonoBehaviour
                              enemyCollider.bounds.max.y - stompTolerance;
 
         return playerIsFalling && playerIsAbove;
+    }
+
+    private void RespawnEnemy()
+    {
+        transform.SetPositionAndRotation(initialPosition, initialRotation);
+
+        isFacingRight = initialFacingRight;
+        isDead = false;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
+        gameObject.SetActive(true);
     }
 }
