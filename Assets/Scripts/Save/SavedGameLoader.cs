@@ -10,6 +10,7 @@ public class SavedGameLoader : MonoBehaviour
             return;
 
         PlayerHealth player = FindAnyObjectByType<PlayerHealth>();
+        CoinWallet wallet = player.GetComponent<CoinWallet>();
         Checkpoint[] checkpoints = FindObjectsByType<Checkpoint>();
 
         foreach (Checkpoint checkpoint in checkpoints)
@@ -23,6 +24,10 @@ public class SavedGameLoader : MonoBehaviour
         }
 
         player.RestoreHealth(data.health);
+
+        if (wallet != null)
+            wallet.RestoreCoins(data.coins);
+        
         GameSession.PendingSave = null;
     }
 }
