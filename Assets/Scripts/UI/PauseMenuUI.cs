@@ -22,7 +22,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerInput playerInput = FindFirstObjectByType<PlayerInput>();
+        PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
 
         if (playerInput == null)
             return;
