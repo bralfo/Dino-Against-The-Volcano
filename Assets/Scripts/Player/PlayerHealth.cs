@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -11,13 +12,20 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float fallLimitY = -10f;
     [SerializeField, Min(0f)] private float damageCooldown = 0.5f;
 
+    [Header("Damage Feedback")]
+    [SerializeField, Min(0f)] private float damageLift = 0.75f;
+    [SerializeField, Min(0f)] private float blinkDuration = 0.15f;
+
     public int CurrentHealth { get; private set; }
     public int MaxHealth => maxHealth;
     public bool IsDead => CurrentHealth <= 0;
+    private SpriteRenderer[] spriteRenderers;
+    private Coroutine blinkCoroutine;
 
     public event Action<int, int> HealthChanged;
     public event Action Died;
     public event Action Respawned;
+    public event Action LifeLost;
 
     private Rigidbody2D rb;
     private Vector3 initialPosition;
@@ -26,6 +34,8 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
         initialPosition = transform.position;
         CurrentHealth = maxHealth;
     }
@@ -39,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!IsDead && transform.position.y < fallLimitY)
         {
-            TakeDamage(1);
+            HandleFall();
         }
     }
 
@@ -48,16 +58,18 @@ public class PlayerHealth : MonoBehaviour
         if (amount <= 0 || IsDead || Time.time < nextDamageTime)
             return;
 
-        CurrentHealth = Mathf.Max(CurrentHealth - amount, 0);
-        NotifyHealthChanged();
+        nextDamageTime = Time.time + damageCooldown;
 
-        if (IsDead)
-        {
-            Died?.Invoke();
+        if (!ApplyDamage(amount))
             return;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         }
 
-        Respawn();
+        transform.position += Vector3.up * damageLift;
+        StartBlink();
     }
 
     public void Heal(int amount)
@@ -80,9 +92,72 @@ public class PlayerHealth : MonoBehaviour
         HealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
 
+    private bool ApplyDamage(int amount)
+    {
+        if (amount <= 0 || IsDead)
+            return false;
+
+        CurrentHealth = Mathf.Max(CurrentHealth - amount, 0);
+        NotifyHealthChanged();
+
+        LifeLost?.Invoke();
+
+        if (IsDead)
+        {
+            Died?.Invoke();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void HandleFall()
+    {
+        if (!ApplyDamage(1))
+            return;
+
+        Respawn();
+    }
+
+    private void StartBlink()
+    {
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+        }
+
+        blinkCoroutine = StartCoroutine(Blink());
+    }
+
+    private IEnumerator Blink()
+    {
+        SetSpritesVisible(false);
+
+        yield return new WaitForSeconds(blinkDuration);
+
+        SetSpritesVisible(true);
+        blinkCoroutine = null;
+    }
+
+    private void SetSpritesVisible(bool isVisible)
+    {
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.enabled = isVisible;
+        }
+    }
+
     private void Respawn()
     {
         nextDamageTime = Time.time + damageCooldown;
+
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+            blinkCoroutine = null;
+        }
+
+        SetSpritesVisible(true);
 
         if (rb != null)
         {
