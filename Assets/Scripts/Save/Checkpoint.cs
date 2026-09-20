@@ -10,8 +10,9 @@ public class Checkpoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerHealth health = other.GetComponentInParent<PlayerHealth>();
+        CoinWallet wallet = other.GetComponentInParent<CoinWallet>();
 
-        if (health == null)
+        if (health == null || wallet == null)
             return;
 
         SaveData data = new SaveData
@@ -19,7 +20,7 @@ public class Checkpoint : MonoBehaviour
             sceneName = SceneManager.GetActiveScene().name,
             checkpointId = checkpointId,
             health = health.CurrentHealth,
-            coins = 0
+            coins = wallet.CurrentCoins
         };
 
         SaveSystem.Save(data);
