@@ -1,34 +1,31 @@
 fileFormatVersion: 2
-guid: a50605010d5708341b98423de1808897
+guid: a42431d4ba82b01428214b272aeaeb71
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2989235775295787918
-    second: Plataforma sheet03_0
+      213: 3067908792771581174
+    second: plataform_0
   - first:
-      213: 8811387552616049504
-    second: Plataforma sheet03_1
+      213: 1788825797669632942
+    second: plataform_1
   - first:
-      213: 816111159810015936
-    second: Plataforma sheet03_2
+      213: 7242167838926410347
+    second: plataform_2
   - first:
-      213: 6220160750558533461
-    second: Plataforma sheet03_3
+      213: 8369641881869364383
+    second: plataform_3
   - first:
-      213: 8350902729057005450
-    second: Plataforma sheet03_4
+      213: -6320153910367085884
+    second: plataform_4
   - first:
-      213: -4577030136211915210
-    second: Plataforma sheet03_5
+      213: -1400084714790179522
+    second: plataform_5
   - first:
-      213: 4464415222300684382
-    second: Plataforma sheet03_6
+      213: -8712338499678373699
+    second: plataform_6
   - first:
-      213: 8122527033758834734
-    second: Plataforma sheet03_7
-  - first:
-      213: -7280786411879185462
-    second: Plataforma sheet03_8
+      213: -7192173358557467099
+    second: plataform_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -124,12 +121,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plataforma sheet03_0
+      name: plataform_0
       rect:
         serializedVersion: 2
-        x: 55
+        x: 179
         y: 1423
-        width: 589
+        width: 583
         height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -139,19 +136,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e8315689916eb7920800000000000000
-      internalID: 2989235775295787918
+      spriteID: 6f49274eac6639a20800000000000000
+      internalID: 3067908792771581174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plataforma sheet03_1
+      name: plataform_1
       rect:
         serializedVersion: 2
-        x: 792
+        x: 786
         y: 1422
-        width: 412
+        width: 429
         height: 456
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -161,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06b6afb5b46584a70800000000000000
-      internalID: 8811387552616049504
+      spriteID: eab372bd59f23d810800000000000000
+      internalID: 1788825797669632942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plataforma sheet03_2
+      name: plataform_2
       rect:
         serializedVersion: 2
-        x: 1386
-        y: 1467
-        width: 621
-        height: 401
+        x: 1254
+        y: 1487
+        width: 610
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,85 +180,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c245b1a6c8635b00800000000000000
-      internalID: 816111159810015936
+      spriteID: b6297f26749518460800000000000000
+      internalID: 7242167838926410347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plataforma sheet03_3
+      name: plataform_3
       rect:
         serializedVersion: 2
-        x: 138
-        y: 791
-        width: 143
-        height: 590
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5575ede2f33725650800000000000000
-      internalID: 6220160750558533461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plataforma sheet03_4
-      rect:
-        serializedVersion: 2
-        x: 464
-        y: 749
-        width: 147
-        height: 588
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8f684f79cd54e370800000000000000
-      internalID: 8350902729057005450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plataforma sheet03_5
-      rect:
-        serializedVersion: 2
-        x: 1451
-        y: 899
-        width: 588
-        height: 407
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 63eb4dc575f1b70c0800000000000000
-      internalID: -4577030136211915210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plataforma sheet03_6
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 166
-        width: 169
+        x: 76
+        y: 168
+        width: 227
         height: 593
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -271,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e50341fbdf9c4fd30800000000000000
-      internalID: 4464415222300684382
+      spriteID: f9c2e0282f0f62470800000000000000
+      internalID: 8369641881869364383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plataforma sheet03_7
+      name: plataform_4
       rect:
         serializedVersion: 2
-        x: 726
-        y: 179
-        width: 182
-        height: 585
+        x: 346
+        y: 168
+        width: 152
+        height: 589
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,19 +224,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e20e3bd5d4309b070800000000000000
-      internalID: 8122527033758834734
+      spriteID: 4ca16ce018d4a48a0800000000000000
+      internalID: -6320153910367085884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plataforma sheet03_8
+      name: plataform_5
       rect:
         serializedVersion: 2
-        x: 1385
-        y: 194
-        width: 423
+        x: 542
+        y: 170
+        width: 260
+        height: 586
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3d2a7fae56e19ce0800000000000000
+      internalID: -1400084714790179522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plataform_6
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 706
+        width: 415
         height: 579
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -315,8 +268,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ac3437a655375fa90800000000000000
-      internalID: -7280786411879185462
+      spriteID: db8f5b36b4e871780800000000000000
+      internalID: -8712338499678373699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plataform_7
+      rect:
+        serializedVersion: 2
+        x: 1391
+        y: 675
+        width: 596
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e6728af64403c90800000000000000
+      internalID: -7192173358557467099
       vertices: []
       indices: 
       edges: []
@@ -335,15 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Plataforma sheet03_0: 2989235775295787918
-      Plataforma sheet03_1: 8811387552616049504
-      Plataforma sheet03_2: 816111159810015936
-      Plataforma sheet03_3: 6220160750558533461
-      Plataforma sheet03_4: 8350902729057005450
-      Plataforma sheet03_5: -4577030136211915210
-      Plataforma sheet03_6: 4464415222300684382
-      Plataforma sheet03_7: 8122527033758834734
-      Plataforma sheet03_8: -7280786411879185462
+      plataform_0: 3067908792771581174
+      plataform_1: 1788825797669632942
+      plataform_2: 7242167838926410347
+      plataform_3: 8369641881869364383
+      plataform_4: -6320153910367085884
+      plataform_5: -1400084714790179522
+      plataform_6: -8712338499678373699
+      plataform_7: -7192173358557467099
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
