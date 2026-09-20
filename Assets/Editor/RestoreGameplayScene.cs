@@ -20,7 +20,7 @@ public static class RestoreGameplayScene
         ConfigurePlayerPrefab();
 
         Scene scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
-        PlayerHealth playerHealth = Object.FindFirstObjectByType<PlayerHealth>();
+        PlayerHealth playerHealth = Object.FindAnyObjectByType<PlayerHealth>();
         Canvas hud = FindHud();
 
         if (playerHealth == null || hud == null)
@@ -191,7 +191,7 @@ public static class RestoreGameplayScene
 
     private static Canvas FindHud()
     {
-        foreach (Canvas canvas in Object.FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        foreach (Canvas canvas in Object.FindObjectsByType<Canvas>(FindObjectsInactive.Include))
         {
             if (canvas.name == "HUD")
                 return canvas;
