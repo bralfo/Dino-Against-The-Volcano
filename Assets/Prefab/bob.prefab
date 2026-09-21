@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 17.89, y: -3.42, z: 0}
-  m_LocalScale: {x: 0.097395055, y: 0.097395055, z: 0.097395055}
+  m_LocalScale: {x: 0.14816287, y: 0.14816287, z: 0.14816287}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -137,6 +137,7 @@ MonoBehaviour:
   groundCheckDepth: 0.5
   groundAheadDistance: 0.05
   groundCheckWidth: 0.12
+  obstacleCheckDistance: 0.08
   screenEdgeMargin: 0.02
   turnCooldown: 0.15
   stompBounceForce: 15
@@ -176,18 +177,8 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 3.97, y: 3.08}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.94, y: 6.16}
-    newSize: {x: 7.94, y: 6.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   m_Size: {x: 6.749, y: 5.236}
   m_Direction: 1
-  m_EdgeRadius: 0
 --- !u!50 &5410442285052393430
 Rigidbody2D:
   serializedVersion: 5
