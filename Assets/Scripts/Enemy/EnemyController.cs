@@ -281,7 +281,10 @@ public class EnemyController : MonoBehaviour
                     ? Camera.main.transform.position
                     : transform.position;
 
-                AudioSource.PlayClipAtPoint(deathSound, soundPosition, deathSoundVolume);
+                AudioSource.PlayClipAtPoint(
+                    deathSound,
+                    soundPosition,
+                    deathSoundVolume * GameAudioSettings.EffectsOutputLevel);
             }
 
             PlayDeathAnimationOrDisable();
