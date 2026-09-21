@@ -24,7 +24,7 @@ public class LevelFinishTrigger : MonoBehaviour
 
         if (heart == null)
         {
-            Debug.LogWarning("O coração final 'heart-ui' não foi encontrado na GameScene.");
+            Debug.LogWarning("The final heart 'heart-ui' was not found in GameScene.");
             return;
         }
 

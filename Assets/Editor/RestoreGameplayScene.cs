@@ -150,7 +150,7 @@ public static class RestoreGameplayScene
         TextureImporter importer = AssetImporter.GetAtPath(HeartSpritePath) as TextureImporter;
 
         if (importer == null)
-            throw new System.InvalidOperationException("O sprite de coração não foi encontrado.");
+            throw new System.InvalidOperationException("The heart sprite was not found.");
 
         importer.textureType = TextureImporterType.Sprite;
         importer.spriteImportMode = SpriteImportMode.Single;
@@ -161,7 +161,7 @@ public static class RestoreGameplayScene
         Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(HeartSpritePath);
 
         if (sprite == null)
-            throw new System.InvalidOperationException("Não foi possível importar o coração como Sprite.");
+            throw new System.InvalidOperationException("The heart could not be imported as a Sprite.");
 
         return sprite;
     }
@@ -171,7 +171,7 @@ public static class RestoreGameplayScene
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath);
 
         if (prefab == null)
-            throw new System.InvalidOperationException("Player.prefab não foi encontrado.");
+            throw new System.InvalidOperationException("Player.prefab was not found.");
 
         PlayerHealth health = prefab.GetComponent<PlayerHealth>();
         PlayerController controller = prefab.GetComponent<PlayerController>();
@@ -275,11 +275,11 @@ public static class RestoreGameplayScene
     private static GameOverUI CreateGameOver(Transform hud, PlayerHealth playerHealth)
     {
         GameObject panel = CreatePanel("GameOverPanel", hud, new Color(0.04f, 0.02f, 0.08f, 0.92f));
-        CreateText("YouDiedText", panel.transform, "FIM DE JOGO", 76f, new Color(1f, 0.25f, 0.2f, 1f), new Vector2(0f, 175f), new Vector2(800f, 110f));
+        CreateText("YouDiedText", panel.transform, "GAME OVER", 76f, new Color(1f, 0.25f, 0.2f, 1f), new Vector2(0f, 175f), new Vector2(800f, 110f));
 
         GameOverUI gameOverUI = hud.gameObject.AddComponent<GameOverUI>();
-        Button playAgain = CreateButton("PlayAgainButton", panel.transform, "JOGAR NOVAMENTE", new Vector2(0f, 25f));
-        Button menu = CreateButton("MenuButton", panel.transform, "MENU PRINCIPAL", new Vector2(0f, -95f));
+        Button playAgain = CreateButton("PlayAgainButton", panel.transform, "PLAY AGAIN", new Vector2(0f, 25f));
+        Button menu = CreateButton("MenuButton", panel.transform, "MAIN MENU", new Vector2(0f, -95f));
 
         UnityEventTools.AddPersistentListener(playAgain.onClick, new UnityAction(gameOverUI.PlayAgain));
         UnityEventTools.AddPersistentListener(menu.onClick, new UnityAction(gameOverUI.GoToMenu));
@@ -297,11 +297,11 @@ public static class RestoreGameplayScene
     private static void CreatePauseMenu(Transform hud, GameOverUI gameOverUI)
     {
         GameObject panel = CreatePanel("PausePanel", hud, new Color(0.02f, 0.04f, 0.08f, 0.9f));
-        CreateText("PausedText", panel.transform, "JOGO PAUSADO", 72f, Color.white, new Vector2(0f, 175f), new Vector2(800f, 110f));
+        CreateText("PausedText", panel.transform, "PAUSED", 72f, Color.white, new Vector2(0f, 175f), new Vector2(800f, 110f));
 
         PauseMenuUI pauseMenu = hud.gameObject.AddComponent<PauseMenuUI>();
-        Button resume = CreateButton("ResumeButton", panel.transform, "CONTINUAR", new Vector2(0f, 25f));
-        Button menu = CreateButton("MenuButton", panel.transform, "MENU PRINCIPAL", new Vector2(0f, -95f));
+        Button resume = CreateButton("ResumeButton", panel.transform, "RESUME", new Vector2(0f, 25f));
+        Button menu = CreateButton("MenuButton", panel.transform, "MAIN MENU", new Vector2(0f, -95f));
 
         UnityEventTools.AddPersistentListener(resume.onClick, new UnityAction(pauseMenu.ResumeGame));
         UnityEventTools.AddPersistentListener(menu.onClick, new UnityAction(pauseMenu.GoToMenu));

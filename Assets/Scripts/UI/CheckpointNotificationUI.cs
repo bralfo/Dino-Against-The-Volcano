@@ -30,7 +30,7 @@ public class CheckpointNotificationUI : MonoBehaviour
 
     public void ShowSaved()
     {
-        Show("JOGO SALVO");
+        Show("GAME SAVED");
     }
 
     private void Show(string message)
