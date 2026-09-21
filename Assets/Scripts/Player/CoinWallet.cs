@@ -9,6 +9,7 @@ public class CoinWallet : MonoBehaviour
 
     public int CurrentCoins { get; private set; }
     public event Action<int> CoinsChanged;
+    public event Action HeartEarned;
     private PlayerHealth playerHealth;
 
     private void Awake()
@@ -63,6 +64,7 @@ public class CoinWallet : MonoBehaviour
         {
             CurrentCoins -= coinsPerHeart;
             playerHealth.Heal(1);
+            HeartEarned?.Invoke();
         }
     }
 

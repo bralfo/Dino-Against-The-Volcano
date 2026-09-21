@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   audioSource: {fileID: 4753308227279763684}
   jumpSound: {fileID: 8300000, guid: 86c2189681e9d174da502dad97b0e3e1, type: 3}
+  jumpSoundVolume: 0.2
   moveSpeed: 10
   jumpForce: 20
   doubleJumpForceMultiplier: 0.7
@@ -79,9 +80,14 @@ MonoBehaviour:
   maxHealth: 3
   respawnPoint: {fileID: 0}
   fallLimitY: -10
-  damageCooldown: 0.5
+  damageCooldown: 1
   damageLift: 0.75
   blinkDuration: 0.15
+  damageKnockbackHorizontal: 5
+  damageKnockbackVertical: 2.5
+  damageKnockbackDuration: 0.2
+  damageSound: {fileID: 8300000, guid: 035cff8b9eb891b47816d70538cbb0f1, type: 3}
+  damageSoundVolume: 0.2
 --- !u!50 &3133520691186688809
 Rigidbody2D:
   serializedVersion: 5

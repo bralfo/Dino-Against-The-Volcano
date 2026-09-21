@@ -20,11 +20,16 @@ public class EnemyController : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioClip deathSound;
-    [SerializeField, Range(0f, 1f)] private float deathSoundVolume = 0.8f;
+    [SerializeField, Range(0f, 1f)] private float deathSoundVolume = 0.2f;
+
+    [Header("Death animation")]
+    [SerializeField] private string deathAnimationState;
+    [SerializeField, Min(0f)] private float deathAnimationDuration = 0.85f;
  
     private bool isFacingRight = false;
     private Rigidbody2D rb;
     private Collider2D enemyCollider;
+    private Animator animator;
     private bool isDead;
     private PlayerHealth playerHealth;
     private Vector3 initialPosition;
@@ -38,6 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         enemyCollider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
         mainCamera = Camera.main;
 
         FitColliderToSprite();
@@ -256,9 +262,10 @@ public class EnemyController : MonoBehaviour
 
         Rigidbody2D playerBody = playerHealth.GetComponent<Rigidbody2D>();
 
-        if (WasStomped(collision.collider, playerBody))
+        if (WasStomped(collision, collision.collider, playerHealth))
         {
             isDead = true;
+            playerHealth.RegisterSuccessfulStomp();
 
             if (playerBody != null)
             {
@@ -277,11 +284,11 @@ public class EnemyController : MonoBehaviour
                 AudioSource.PlayClipAtPoint(deathSound, soundPosition, deathSoundVolume);
             }
 
-            gameObject.SetActive(false);
+            PlayDeathAnimationOrDisable();
             return;
         }
 
-        playerHealth.TakeDamage(1);
+        playerHealth.TryTakeDamage(1, transform.position);
         StartIgnoringPlayerUntilSeparated(collision.collider);
     }
 
@@ -323,20 +330,81 @@ public class EnemyController : MonoBehaviour
         ignoredPlayerCollider = null;
     }
 
-    private bool WasStomped(Collider2D playerCollider, Rigidbody2D playerBody)
+    private bool WasStomped(
+        Collision2D collision,
+        Collider2D playerCollider,
+        PlayerHealth playerHealth)
     {
-        if (enemyCollider == null || playerBody == null)
+        if (enemyCollider == null || playerCollider == null || playerHealth == null)
             return false;
 
-        bool playerIsFalling = playerBody.linearVelocity.y <= 0f;
-        bool playerIsAbove = playerCollider.bounds.min.y >=
-                             enemyCollider.bounds.max.y - stompTolerance;
+        if (!playerHealth.CanStompEnemy)
+            return false;
 
-        return playerIsFalling && playerIsAbove;
+        Bounds enemyBounds = enemyCollider.bounds;
+        Bounds playerBounds = playerCollider.bounds;
+        float topBandDepth = Mathf.Max(stompTolerance, enemyBounds.size.y * 0.35f);
+        float topBandMinimum = enemyBounds.max.y - topBandDepth;
+
+        bool playerCenterIsAbove = playerBounds.center.y > enemyBounds.center.y;
+        bool horizontalOverlap = playerBounds.max.x >= enemyBounds.min.x
+            && playerBounds.min.x <= enemyBounds.max.x;
+        bool playerFeetAreNearTop = playerBounds.min.y >= topBandMinimum;
+        bool hasTopContact = false;
+
+        for (int index = 0; index < collision.contactCount; index++)
+        {
+            Vector2 contactPoint = collision.GetContact(index).point;
+
+            if (contactPoint.y >= topBandMinimum
+                && contactPoint.x >= enemyBounds.min.x - 0.05f
+                && contactPoint.x <= enemyBounds.max.x + 0.05f)
+            {
+                hasTopContact = true;
+                break;
+            }
+        }
+
+        return playerCenterIsAbove
+            && horizontalOverlap
+            && (playerFeetAreNearTop || hasTopContact);
+    }
+
+    private void PlayDeathAnimationOrDisable()
+    {
+        RestorePlayerCollision();
+
+        if (enemyCollider != null)
+            enemyCollider.enabled = false;
+
+        if (animator == null || string.IsNullOrWhiteSpace(deathAnimationState))
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.simulated = false;
+        }
+
+        animator.Play(deathAnimationState, 0, 0f);
+        StartCoroutine(DisableAfterDeathAnimation());
+    }
+
+    private IEnumerator DisableAfterDeathAnimation()
+    {
+        yield return new WaitForSeconds(deathAnimationDuration);
+        gameObject.SetActive(false);
     }
 
     private void RespawnEnemy()
     {
+        RestorePlayerCollision();
+        StopAllCoroutines();
+        gameObject.SetActive(true);
         transform.SetPositionAndRotation(initialPosition, initialRotation);
 
         isFacingRight = initialFacingRight;
@@ -345,11 +413,19 @@ public class EnemyController : MonoBehaviour
 
         if (rb != null)
         {
+            rb.simulated = true;
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
 
-        gameObject.SetActive(true);
+        if (enemyCollider != null)
+            enemyCollider.enabled = true;
+
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+        }
     }
 
     private void OnDrawGizmosSelected()
