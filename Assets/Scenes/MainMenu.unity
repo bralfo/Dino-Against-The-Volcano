@@ -290,8 +290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 6.743408, y: 0}
+  m_SizeDelta: {x: 13.4867, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388508397
 MonoBehaviour:
@@ -306,14 +306,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.54901963}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.84705883}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -3403364968138368886, guid: 2bdc2876c503c2d38a75d97d41c61280, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -741,8 +741,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.72676, y: -8.0323}
-  m_SizeDelta: {x: 1354.1736, y: 189.5196}
+  m_AnchoredPosition: {x: -44.5133, y: -10.3028}
+  m_SizeDelta: {x: 1595.782, y: 212.9862}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093219879
 MonoBehaviour:
@@ -852,6 +852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverSound
   audioSource: {fileID: 514529834}
   hoverSound: {fileID: 8300000, guid: 0eac62c9ca5ec62ae89d9541c6f7484f, type: 3}
+  hoverSoundVolume: 0.2
 --- !u!1 &1622200468
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
   continueButton: {fileID: 1093219879}
+  continueDisabledOverlay: {fileID: 388508395}
 --- !u!1 &1723771907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverSound
   audioSource: {fileID: 514529834}
   hoverSound: {fileID: 8300000, guid: 0eac62c9ca5ec62ae89d9541c6f7484f, type: 3}
+  hoverSoundVolume: 0.2
 --- !u!1 &2091492900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,6 +1360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverSound
   audioSource: {fileID: 514529834}
   hoverSound: {fileID: 8300000, guid: 0eac62c9ca5ec62ae89d9541c6f7484f, type: 3}
+  hoverSoundVolume: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

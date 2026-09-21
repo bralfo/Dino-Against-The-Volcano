@@ -141,9 +141,11 @@ MonoBehaviour:
   screenEdgeMargin: 0.02
   turnCooldown: 0.15
   stompBounceForce: 15
-  stompTolerance: 0.2
+  stompTolerance: 0.35
   deathSound: {fileID: 8300000, guid: 29b1d0a30ece7ab4cbb94eb4769df7e7, type: 3}
-  deathSoundVolume: 0.8
+  deathSoundVolume: 0.2
+  deathAnimationState: bob morre
+  deathAnimationDuration: 0.85
 --- !u!70 &6976462340243157281
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

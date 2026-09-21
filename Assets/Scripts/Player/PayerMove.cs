@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField, Range(0f, 1f)] private float jumpSoundVolume = 0.2f;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private float moveInput;
+    private float movementLockedUntil;
 
     private void Awake()
     {
@@ -51,7 +53,18 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (Time.time < movementLockedUntil)
+            return;
+
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+    }
+
+    public void ApplyKnockback(Vector2 velocity, float movementLockDuration)
+    {
+        movementLockedUntil = Mathf.Max(
+            movementLockedUntil,
+            Time.time + movementLockDuration);
+        rb.linearVelocity = velocity;
     }
 
     public void OnMove(InputValue value)
@@ -78,7 +91,7 @@ public class PlayerController : MonoBehaviour
                 isJumping = true;
 
                 if (audioSource != null && jumpSound != null)
-                    audioSource.PlayOneShot(jumpSound);
+                    audioSource.PlayOneShot(jumpSound, jumpSoundVolume);
                 
             }
             return;

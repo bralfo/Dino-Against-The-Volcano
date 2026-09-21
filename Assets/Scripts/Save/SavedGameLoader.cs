@@ -10,6 +10,11 @@ public class SavedGameLoader : MonoBehaviour
             return;
 
         PlayerHealth player = FindAnyObjectByType<PlayerHealth>();
+        CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
+
+        if (player == null)
+            return;
+
         CoinWallet wallet = player.GetComponent<CoinWallet>();
         Checkpoint[] checkpoints = FindObjectsByType<Checkpoint>();
 
@@ -18,8 +23,13 @@ public class SavedGameLoader : MonoBehaviour
             if (checkpoint.Id != data.checkpointId)
                 continue;
 
-            player.transform.position = checkpoint.transform.position;
-            player.SetRespawnPoint(checkpoint.transform);
+            player.transform.position = checkpoint.RespawnPoint.position;
+
+            if (checkpointManager != null)
+                checkpointManager.RestoreCheckpoint(checkpoint);
+            else
+                player.SetRespawnPoint(checkpoint.RespawnPoint);
+
             break;
         }
 

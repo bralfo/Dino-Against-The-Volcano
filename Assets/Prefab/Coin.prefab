@@ -175,4 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e7d4d7eba9d10db9c544a0cf2ca2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinCollectible
+  collectSound: {fileID: 8300000, guid: 5033350fb509f6542a680a2dee0125a3, type: 3}
+  collectSoundVolume: 0.2
   value: 1

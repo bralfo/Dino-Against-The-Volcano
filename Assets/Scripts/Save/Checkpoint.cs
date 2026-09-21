@@ -1,28 +1,29 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private string checkpointId;
+    [SerializeField] private Transform respawnPoint;
 
     public string Id => checkpointId;
+    public Transform RespawnPoint => respawnPoint != null ? respawnPoint : transform;
+
+    public void Configure(string id, Transform newRespawnPoint)
+    {
+        checkpointId = id;
+        respawnPoint = newRespawnPoint;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerHealth health = other.GetComponentInParent<PlayerHealth>();
-        CoinWallet wallet = other.GetComponentInParent<CoinWallet>();
-
-        if (health == null || wallet == null)
+        if (other.GetComponentInParent<PlayerHealth>() == null)
             return;
 
-        SaveData data = new SaveData
-        {
-            sceneName = SceneManager.GetActiveScene().name,
-            checkpointId = checkpointId,
-            health = health.CurrentHealth,
-            coins = wallet.CurrentCoins
-        };
+        CheckpointManager manager = FindAnyObjectByType<CheckpointManager>();
 
-        SaveSystem.Save(data);
+        if (manager == null)
+            return;
+
+        manager.ActivateCheckpoint(this);
     }
 }
