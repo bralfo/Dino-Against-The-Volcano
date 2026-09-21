@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
@@ -72,6 +76,10 @@ public class PlayerController : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, currentJumpForce);
                 jumpsUsed++;
                 isJumping = true;
+
+                if (audioSource != null && jumpSound != null)
+                    audioSource.PlayOneShot(jumpSound);
+                
             }
             return;
         }
