@@ -288,7 +288,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        playerHealth.TryTakeDamage(1, transform.position);
+        playerHealth.QueueContactDamage(1, transform.position);
         StartIgnoringPlayerUntilSeparated(collision.collider);
     }
 

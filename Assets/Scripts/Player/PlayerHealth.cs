@@ -42,6 +42,9 @@ public class PlayerHealth : MonoBehaviour
     private Vector3 initialPosition;
     private float nextDamageTime;
     private float stompChainGraceUntil;
+    private Coroutine pendingContactDamageCoroutine;
+    private int pendingContactDamage;
+    private Vector2 pendingContactDamageSource;
 
     private void Awake()
     {
@@ -89,9 +92,40 @@ public class PlayerHealth : MonoBehaviour
         return true;
     }
 
+    public void QueueContactDamage(int amount, Vector2 damageSourcePosition)
+    {
+        if (amount <= 0 || IsDead)
+            return;
+
+        if (amount > pendingContactDamage)
+        {
+            pendingContactDamage = amount;
+            pendingContactDamageSource = damageSourcePosition;
+        }
+
+        if (pendingContactDamageCoroutine == null)
+            pendingContactDamageCoroutine = StartCoroutine(ResolveContactDamage());
+    }
+
     public void RegisterSuccessfulStomp()
     {
         stompChainGraceUntil = Time.time + 0.1f;
+    }
+
+    private IEnumerator ResolveContactDamage()
+    {
+        yield return new WaitForFixedUpdate();
+
+        int damage = pendingContactDamage;
+        Vector2 damageSourcePosition = pendingContactDamageSource;
+
+        pendingContactDamage = 0;
+        pendingContactDamageCoroutine = null;
+
+        if (Time.time <= stompChainGraceUntil)
+            yield break;
+
+        TryTakeDamage(damage, damageSourcePosition);
     }
 
     public void Heal(int amount)
