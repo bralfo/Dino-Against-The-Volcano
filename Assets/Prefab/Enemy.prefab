@@ -115,10 +115,13 @@ MonoBehaviour:
   groundCheckDepth: 0.5
   groundAheadDistance: 0.05
   groundCheckWidth: 0.12
+  obstacleCheckDistance: 0.08
   screenEdgeMargin: 0.02
   turnCooldown: 0.15
   stompBounceForce: 15
   stompTolerance: 0.2
+  deathSound: {fileID: 8300000, guid: 29b1d0a30ece7ab4cbb94eb4769df7e7, type: 3}
+  deathSoundVolume: 0.8
 --- !u!50 &7100421329921248148
 Rigidbody2D:
   serializedVersion: 5

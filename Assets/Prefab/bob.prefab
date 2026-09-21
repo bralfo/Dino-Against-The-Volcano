@@ -137,10 +137,13 @@ MonoBehaviour:
   groundCheckDepth: 0.5
   groundAheadDistance: 0.05
   groundCheckWidth: 0.12
+  obstacleCheckDistance: 0.08
   screenEdgeMargin: 0.02
   turnCooldown: 0.15
   stompBounceForce: 15
   stompTolerance: 0.2
+  deathSound: {fileID: 8300000, guid: 29b1d0a30ece7ab4cbb94eb4769df7e7, type: 3}
+  deathSoundVolume: 0.8
 --- !u!70 &6976462340243157281
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -176,18 +179,8 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 3.97, y: 3.08}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.94, y: 6.16}
-    newSize: {x: 7.94, y: 6.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   m_Size: {x: 6.749, y: 5.236}
   m_Direction: 1
-  m_EdgeRadius: 0
 --- !u!50 &5410442285052393430
 Rigidbody2D:
   serializedVersion: 5

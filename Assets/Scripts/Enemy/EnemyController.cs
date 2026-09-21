@@ -18,6 +18,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float stompBounceForce = 15f;
     [SerializeField, Min(0f)] private float stompTolerance = 0.2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField, Range(0f, 1f)] private float deathSoundVolume = 0.8f;
+ 
     private bool isFacingRight = false;
     private Rigidbody2D rb;
     private Collider2D enemyCollider;
@@ -262,6 +266,15 @@ public class EnemyController : MonoBehaviour
                     playerBody.linearVelocity.x,
                     stompBounceForce
                 );
+            }
+
+            if (deathSound != null)
+            {
+                Vector3 soundPosition = Camera.main != null
+                    ? Camera.main.transform.position
+                    : transform.position;
+
+                AudioSource.PlayClipAtPoint(deathSound, soundPosition, deathSoundVolume);
             }
 
             gameObject.SetActive(false);
