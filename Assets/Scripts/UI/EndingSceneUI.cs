@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class EndingSceneUI : MonoBehaviour
 {
     private const string EndingSceneName = "EndScene";
+    private const string MainMenuSceneName = "MainMenu";
+    private const float ReturnToMenuDelay = 15f;
     private const int AnimationColumns = 8;
     private const int AnimationRows = 7;
     private const int AnimationFrameCount = 51;
@@ -14,6 +16,8 @@ public class EndingSceneUI : MonoBehaviour
     private RawImage animatedImage;
     private int currentFrame = -1;
     private float animationStartTime;
+    private float returnToMenuTime;
+    private bool isReturningToMenu;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void RegisterSceneBootstrap()
@@ -24,7 +28,13 @@ public class EndingSceneUI : MonoBehaviour
 
     private static void BuildEndingScene(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != EndingSceneName || FindAnyObjectByType<EndingSceneUI>() != null)
+        if (scene.name != EndingSceneName)
+            return;
+
+        SaveSystem.DeleteSave();
+        GameSession.PendingSave = null;
+
+        if (FindAnyObjectByType<EndingSceneUI>() != null)
             return;
 
         GameObject root = new GameObject("EndingScreen");
@@ -34,6 +44,13 @@ public class EndingSceneUI : MonoBehaviour
 
     private void Update()
     {
+        if (!isReturningToMenu && Time.unscaledTime >= returnToMenuTime)
+        {
+            isReturningToMenu = true;
+            SceneManager.LoadScene(MainMenuSceneName);
+            return;
+        }
+
         if (animatedImage == null || animatedImage.texture == null)
             return;
 
@@ -58,6 +75,7 @@ public class EndingSceneUI : MonoBehaviour
     private void CreateInterface()
     {
         animationStartTime = Time.unscaledTime;
+        returnToMenuTime = animationStartTime + ReturnToMenuDelay;
 
         GameObject canvasObject = new GameObject(
             "EndingCanvas",
